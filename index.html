@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Finance Tracker</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Finance Tracker</h1>
+      <p class="muted">Lokal gespeichert. Fokus: Ausgaben nach Kategorien.</p>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <!-- Left: Add transaction -->
+    <section class="card">
+      <h2>Buchung hinzufügen</h2>
+
+      <form id="txForm" class="form">
+        <div class="row">
+          <label>
+            Typ
+            <select id="txType" required>
+              <option value="expense">Ausgabe</option>
+              <option value="income">Einnahme</option>
+            </select>
+          </label>
+
+          <label>
+            Betrag (€)
+            <input id="txAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="z. B. 12.50" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Kategorie
+            <select id="txCategory" required></select>
+          </label>
+
+          <label>
+            Datum
+            <input id="txDate" type="date" required />
+          </label>
+        </div>
+
+        <label>
+          Notiz (optional)
+          <input id="txNote" type="text" maxlength="80" placeholder="z. B. REWE" />
+        </label>
+
+        <button class="btn" type="submit">Speichern</button>
+      </form>
+    </section>
+
+    <!-- Right: Month + stats -->
+    <section class="card">
+      <div class="row space-between align-end">
+        <div>
+          <h2>Monat</h2>
+          <p class="muted">Filter für Auswertung & Liste</p>
+        </div>
+        <label class="month">
+          <span class="muted">YYYY-MM</span>
+          <input id="monthFilter" type="month" />
+        </label>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="muted">Einnahmen</div>
+          <div id="sumIncome" class="big">€ 0,00</div>
+        </div>
+        <div class="stat">
+          <div class="muted">Ausgaben</div>
+          <div id="sumExpense" class="big">€ 0,00</div>
+        </div>
+        <div class="stat">
+          <div class="muted">Saldo</div>
+          <div id="sumBalance" class="big">€ 0,00</div>
+        </div>
+      </div>
+
+      <h3>Ausgaben nach Kategorie</h3>
+      <div id="categoryStats" class="list muted">Noch keine Ausgaben.</div>
+    </section>
+
+    <!-- Categories -->
+    <section class="card">
+      <h2>Kategorien</h2>
+      <form id="catForm" class="form inline">
+        <input id="catName" type="text" maxlength="24" placeholder="Neue Kategorie (z. B. Essen)" />
+        <button class="btn secondary" type="submit">Hinzufügen</button>
+      </form>
+
+      <div id="categoryList" class="chips"></div>
+      <p class="muted small">Löschen geht nur, wenn keine Buchungen diese Kategorie nutzen.</p>
+    </section>
+
+    <!-- Transactions list -->
+    <section class="card">
+      <div class="row space-between align-end">
+        <div>
+          <h2>Buchungen</h2>
+          <p class="muted">Neueste zuerst</p>
+        </div>
+        <button id="clearAll" class="btn danger" type="button">Alles löschen</button>
+      </div>
+
+      <div id="txList" class="tx-list muted">Noch keine Buchungen.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container muted small">
+      Tipp: Auf Android im Browser-Menü „Zum Startbildschirm hinzufügen“.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

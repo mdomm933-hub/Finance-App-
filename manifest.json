@@ -1,0 +1,10 @@
+{
+  "name": "Finance Tracker",
+  "short_name": "Finance",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#111827",
+  "description": "Lokaler Finance Tracker: Ausgaben nach Kategorien.",
+  "icons": []
+}
